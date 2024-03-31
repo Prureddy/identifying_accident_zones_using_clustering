@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Spot Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+    <h1 class="center">Identifying accident zones using clustering anta</h1>
+    <!-- Add any additional navbar items or links here -->
+    <div class="navbar-items">
+        <a href="#">Home</a>
+        <a href="#">Link</a>
+        <a href="#">Analysis</a>
+        <!-- Add more links as needed -->
+    </div>
+    </nav>
+
+    <main class="content">
+        <div class="background-image">
+
+        </div> <!-- Background image -->
+
+       <div class="analysis-form-container">
+    <h2 class="heading">Select Algorithm:</h2>
+    <div class="algorithm-selection">
+        <form id="analysis-form" action="/analyze" method="post">
+            <select name="algorithm" id="algorithm">
+                <option value="dbscan">DBSCAN</option>
+                <option value="kmeans">KMeans</option>
+            </select>
+            <button type="submit" id="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+        <div id="results" class="results"></div>
+        <div id="loader" class="loader"></div> <!-- Loading animation -->
+    </main>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

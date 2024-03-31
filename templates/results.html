@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+        .plot-container {
+            margin-top: 20px; /* Add margin to separate plots */
+        }
+    </style>
+</head>
+<body>
+    <h1>Results</h1>
+    <p>Algorithm: {{ results.algorithm }}</p>
+    <h2>Top Density Clusters</h2>
+    <ul>
+        {% for cluster in results.top_clusters %}
+            <li>{{ cluster }}</li>
+        {% endfor %}
+    </ul>
+    <div class="center">
+        {% if results.plot_data %}
+            <div class="plot-container">
+                <h3>Scatter Plot of Locations with Clusters</h3>
+                <img src="data:image/png;base64,{{ results.plot_data }}" alt="Scatter Plot">
+            </div>
+        {% else %}
+            <p>No plot available.</p>
+        {% endif %}
+        {% if results.algorithm in ['kmeans', 'dbscan'] %}
+            {% if results.kmeans_plot_data %}
+                <div class="plot-container">
+                    <h3>Top Density-Based Clusters Found by KMeans-DB</h3>
+                    <img src="data:image/png;base64,{{ results.kmeans_plot_data }}" alt="KMeans Plot">
+                </div>
+            {% else %}
+                <p>No KMeans plot available.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
